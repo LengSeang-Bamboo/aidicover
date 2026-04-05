@@ -265,7 +265,7 @@ const GlassCard = ({ children, className = "" }: { children: ReactNode, classNam
     animate={{ opacity: 1, scale: 1, y: 0 }}
     exit={{ opacity: 0, scale: 0.98, y: -20 }}
     whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.2 } }}
-    className={`glass-morphism rounded-2xl p-8 flex flex-col ${className}`}
+    className={`glass-morphism rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col ${className}`}
   >
     {children}
   </motion.div>
@@ -341,29 +341,29 @@ export default function App() {
       <LiquidBackground isDark={isDark} />
       
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-12 py-10">
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 py-2 md:px-12 md:py-10">
         <div className="flex items-center gap-4 group cursor-pointer">
           <div className="flex flex-col">
-            <span className="font-black text-2xl tracking-tighter uppercase leading-none">AI-DISCOVERY</span>
-            <span className="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">My Personal AI Discovery</span>
+            <span className="font-black text-xl md:text-2xl tracking-tighter uppercase leading-none">AI-DISCOVERY</span>
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.5em] text-indigo-500 uppercase">My Personal AI Discovery</span>
           </div>
         </div>
         
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           <button 
             onClick={() => setIsDark(!isDark)}
-            className="p-4 rounded-2xl bg-white/10 dark:bg-black/20 border border-white/20 hover:bg-white/20 hover:scale-110 transition-all shadow-xl backdrop-blur-md"
+            className="p-3 md:p-4 rounded-2xl bg-white/10 dark:bg-black/20 border border-white/20 hover:bg-white/20 hover:scale-110 transition-all shadow-xl backdrop-blur-md"
           >
-            {isDark ? <Sun className="w-6 h-6 text-amber-400" /> : <Moon className="w-6 h-6 text-indigo-600" />}
+            {isDark ? <Sun className="w-5 h-5 md:w-6 md:h-6 text-amber-400" /> : <Moon className="w-5 h-5 md:w-6 md:h-6 text-indigo-600" />}
           </button>
-          <div className="px-6 py-3 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-500 font-black text-lg backdrop-blur-md">
+          <div className="px-4 py-2 md:px-6 md:py-3 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-500 font-black text-base md:text-lg backdrop-blur-md">
             {currentSlide + 1} / {SLIDES.length}
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="relative pt-40 pb-96 px-8 max-w-7xl mx-auto min-h-screen flex flex-col justify-start">
+      <main className="relative pt-20 pb-32 md:pt-40 md:pb-96 px-4 sm:px-8 max-w-7xl mx-auto min-h-screen flex flex-col justify-start">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
             key={currentSlide}
@@ -390,7 +390,7 @@ export default function App() {
             className="w-full cursor-grab active:cursor-grabbing touch-none px-4"
           >
             {slide.type === 'title' && (
-              <div className="flex flex-col items-center text-center space-y-12">
+              <div className="flex flex-col items-center text-center space-y-8 md:space-y-12">
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -398,27 +398,27 @@ export default function App() {
                 >
                   {slide.subtitle}
                 </motion.div>
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-balance text-text-primary">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-balance text-text-primary">
                   {slide.title.split(' ').map((word, i) => (
                     <span key={i} className={i >= slide.title.split(' ').length - 2 ? "text-indigo-600 dark:text-indigo-400" : ""}>
                       {word}{' '}
                     </span>
                   ))}
                 </h1>
-                <p className="text-2xl md:text-3xl text-text-secondary max-w-3xl font-medium leading-relaxed">
+                <p className="text-lg sm:text-2xl md:text-3xl text-text-secondary max-w-3xl font-medium leading-relaxed">
                   {slide.content.description}
                 </p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full mt-8 md:mt-12">
                   {slide.content.stats.map((stat: string, i: number) => (
-                    <GlassCard key={i} className="py-8 items-center justify-center border-indigo-500/10 text-center">
-                      <span className="text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-2">{stat.split(' ')[0]}</span>
-                      <p className="text-xs uppercase tracking-widest font-black opacity-60">{stat.split(' ').slice(1).join(' ')}</p>
+                    <GlassCard key={i} className="py-3 md:py-6 items-center justify-center border-indigo-500/10 text-center">
+                      <span className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-2">{stat.split(' ')[0]}</span>
+                      <p className="text-[10px] md:text-xs uppercase tracking-widest font-black opacity-60">{stat.split(' ').slice(1).join(' ')}</p>
                     </GlassCard>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-6 mt-12">
+                <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-8 md:mt-12">
                   {slide.content.tools.map((tool: any, i: number) => (
                     <motion.a 
                       whileHover={{ scale: 1.05, y: -5 }}
@@ -427,9 +427,9 @@ export default function App() {
                       href={tool.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-8 py-4 rounded-3xl bg-white/10 dark:bg-black/30 border border-white/20 hover:bg-white/20 transition-all font-black text-lg shadow-2xl backdrop-blur-xl"
+                      className="flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-white/10 dark:bg-black/30 border border-white/20 hover:bg-white/20 transition-all font-black text-base sm:text-lg shadow-2xl backdrop-blur-xl"
                     >
-                      <AILogo name={tool.name.split('.')[0].charAt(0).toUpperCase() + tool.name.split('.')[0].slice(1)} className="w-8 h-8" />
+                      <AILogo name={tool.name.split('.')[0].charAt(0).toUpperCase() + tool.name.split('.')[0].slice(1)} className="w-6 h-6 md:w-8 md:h-8" />
                       {tool.name} <ExternalLink className="w-4 h-4 opacity-40 ml-1" />
                     </motion.a>
                   ))}
@@ -438,29 +438,29 @@ export default function App() {
             )}
 
             {slide.type === 'content' && (
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div className="space-y-4">
-                  <span className="text-indigo-500 font-black tracking-[0.3em] text-sm uppercase">{slide.subtitle}</span>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
+                  <span className="text-indigo-500 font-black tracking-[0.3em] text-xs md:text-sm uppercase">{slide.subtitle}</span>
+                  <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
                   {slide.content.map((item: any, i: number) => (
                     <GlassCard key={i} className="group hover:bg-white/50 dark:hover:bg-white/5">
-                      <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-                        <div className="w-20 h-20 rounded-3xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
+                        <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-3xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                           {item.url ? (
                             <a href={item.url} target="_blank" rel="noopener noreferrer" className="w-full h-full flex items-center justify-center">
-                              {item.icon || <CheckCircle className="w-10 h-10" />}
+                              {item.icon || <CheckCircle className="w-8 h-8 md:w-10 md:h-10" />}
                             </a>
                           ) : (
-                            item.icon || <CheckCircle className="w-10 h-10" />
+                            item.icon || <CheckCircle className="w-8 h-8 md:w-10 md:h-10" />
                           )}
                         </div>
-                        <div className="flex-1 space-y-4">
-                          <h3 className="text-3xl font-black tracking-tight text-text-primary">{item.label}</h3>
-                          <p className="text-xl text-text-secondary font-medium leading-relaxed">{item.text}</p>
+                        <div className="flex-1 space-y-3 md:space-y-4">
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-text-primary">{item.label}</h3>
+                          <p className="text-lg md:text-xl text-text-secondary font-medium leading-relaxed">{item.text}</p>
                           {item.example && (
-                            <div className="mt-6 p-6 rounded-3xl bg-black/5 dark:bg-white/5 border border-white/10 font-mono text-base italic leading-relaxed opacity-90 text-text-primary">
+                            <div className="mt-4 p-4 sm:p-6 rounded-3xl bg-black/5 dark:bg-white/5 border border-white/10 font-mono text-sm sm:text-base italic leading-relaxed opacity-90 text-text-primary">
                               "{item.example}"
                             </div>
                           )}
@@ -478,17 +478,17 @@ export default function App() {
             )}
 
             {slide.type === 'grid' && (
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div className="space-y-4">
-                  <span className="text-indigo-500 font-black tracking-[0.3em] text-sm uppercase">{slide.subtitle}</span>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
+                  <span className="text-indigo-500 font-black tracking-[0.3em] text-xs md:text-sm uppercase">{slide.subtitle}</span>
+                  <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                   {slide.content.map((item: any, i: number) => (
                     <GlassCard key={i} className="hover:border-indigo-500/30">
-                      <div className="flex items-center justify-between mb-10">
-                        <div className="w-16 h-16 rounded-3xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-inner">
-                          {item.icon || <Zap className="w-8 h-8" />}
+                      <div className="flex items-center justify-between mb-8 md:mb-10">
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-3xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-inner">
+                          {item.icon || <Zap className="w-6 h-6 md:w-8 md:h-8" />}
                         </div>
                         <div className="flex -space-x-4">
                           {item.tools.split(' · ').map((tool: string, idx: number) => (
@@ -500,17 +500,17 @@ export default function App() {
                               rel="noopener noreferrer"
                               className="block"
                             >
-                              <AILogo name={tool.trim()} className="w-12 h-12 border-4 border-white/40 dark:border-slate-900/40 shadow-2xl bg-white" />
+                              <AILogo name={tool.trim()} className="w-10 h-10 md:w-12 md:h-12 border-4 border-white/40 dark:border-slate-900/40 shadow-2xl bg-white" />
                             </motion.a>
                           ))}
                         </div>
                       </div>
-                      <h3 className="text-3xl font-black mb-6 tracking-tighter uppercase bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
+                      <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter uppercase bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
                         {item.type}
                       </h3>
-                      <div className="space-y-6 mt-auto">
-                        <p className="text-2xl font-bold text-text-primary">{item.tools}</p>
-                        <p className="text-lg text-text-secondary font-medium leading-relaxed">{item.use}</p>
+                      <div className="space-y-4 md:space-y-6 mt-auto">
+                        <p className="text-xl md:text-2xl font-bold text-text-primary">{item.tools}</p>
+                        <p className="text-base md:text-lg text-text-secondary font-medium leading-relaxed">{item.use}</p>
                       </div>
                     </GlassCard>
                   ))}
@@ -519,39 +519,39 @@ export default function App() {
             )}
 
             {slide.type === 'contrast' && (
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div className="space-y-4">
-                  <span className="text-indigo-500 font-black tracking-[0.3em] text-sm uppercase">{slide.subtitle}</span>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
+                  <span className="text-indigo-500 font-black tracking-[0.3em] text-xs md:text-sm uppercase">{slide.subtitle}</span>
+                  <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                   <GlassCard className="border-rose-500/20 bg-rose-500/5 items-start">
-                    <h3 className="text-rose-500 font-black text-3xl mb-8 flex items-center gap-3">
-                      <Zap className="w-8 h-8 rotate-180" /> {slide.content.weak.title}
+                    <h3 className="text-rose-500 font-black text-2xl md:text-3xl mb-6 md:mb-8 flex items-center gap-3">
+                      <Zap className="w-6 h-6 md:w-8 md:h-8 rotate-180" /> {slide.content.weak.title}
                     </h3>
-                    <div className="w-full p-8 rounded-[2rem] bg-indigo-950/5 dark:bg-black/20 border border-black/5 font-mono text-xl mb-10 shadow-inner min-h-[140px] flex items-center">
+                    <div className="w-full p-6 md:p-8 rounded-[2rem] bg-indigo-950/5 dark:bg-black/20 border border-black/5 font-mono text-base md:text-xl mb-8 md:mb-10 shadow-inner min-h-[120px] md:min-h-[140px] flex items-center">
                       {slide.content.weak.text}
                     </div>
                     <ul className="space-y-6">
                       {slide.content.weak.points.map((p: string, i: number) => (
-                        <li key={i} className="flex items-start gap-4 text-lg font-bold opacity-70">
-                          <span className="text-rose-500 font-black text-2xl">✕</span> {p}
+                        <li key={i} className="flex items-start gap-4 text-base md:text-lg font-bold opacity-70">
+                          <span className="text-rose-500 font-black text-xl md:text-2xl">✕</span> {p}
                         </li>
                       ))}
                     </ul>
                   </GlassCard>
 
                   <GlassCard className="border-emerald-500/20 bg-emerald-500/5 items-start">
-                    <h3 className="text-emerald-500 font-black text-3xl mb-8 flex items-center gap-3">
-                      <CheckCircle className="w-8 h-8" /> {slide.content.raci.title}
+                    <h3 className="text-emerald-500 font-black text-2xl md:text-3xl mb-6 md:mb-8 flex items-center gap-3">
+                      <CheckCircle className="w-6 h-6 md:w-8 md:h-8" /> {slide.content.raci.title}
                     </h3>
-                    <div className="w-full p-8 rounded-[2rem] bg-indigo-950/5 dark:bg-black/20 border border-black/5 font-mono text-xl mb-10 shadow-inner min-h-[140px] flex items-center whitespace-pre-line">
+                    <div className="w-full p-6 md:p-8 rounded-[2rem] bg-indigo-950/5 dark:bg-black/20 border border-black/5 font-mono text-base md:text-xl mb-8 md:mb-10 shadow-inner min-h-[120px] md:min-h-[140px] flex items-center whitespace-pre-line">
                       {slide.content.raci.text}
                     </div>
                     <ul className="space-y-6">
                       {slide.content.raci.points.map((p: string, i: number) => (
-                        <li key={i} className="flex items-start gap-4 text-lg font-black">
-                          <span className="text-emerald-500 font-black text-2xl">✓</span> {p}
+                        <li key={i} className="flex items-start gap-4 text-base md:text-lg font-black">
+                          <span className="text-emerald-500 font-black text-xl md:text-2xl">✓</span> {p}
                         </li>
                       ))}
                     </ul>
@@ -561,10 +561,10 @@ export default function App() {
             )}
 
             {slide.type === 'timeline' && (
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div className="space-y-4">
-                  <span className="text-indigo-500 font-black tracking-[0.3em] text-sm uppercase">{slide.subtitle}</span>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
+                  <span className="text-indigo-500 font-black tracking-[0.3em] text-xs md:text-sm uppercase">{slide.subtitle}</span>
+                  <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
                 </div>
                 <div className="space-y-6">
                   {slide.content.map((item: any, i: number) => (
@@ -573,16 +573,16 @@ export default function App() {
                       initial={{ opacity: 0, x: -30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-center gap-8 group"
+                      className="flex items-center gap-4 md:gap-8 group"
                     >
-                      <div className="w-32 flex-shrink-0 font-mono text-2xl font-black text-indigo-500 opacity-60">
+                      <div className="w-20 md:w-32 flex-shrink-0 font-mono text-xl md:text-2xl font-black text-indigo-500 opacity-60">
                         {item.time}
                       </div>
                       <div className="flex-grow">
-                        <GlassCard className="p-8 flex-row items-center justify-between group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-all">
+                        <GlassCard className="p-6 md:p-8 flex-row items-center justify-between group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-all">
                           <div>
-                            <h3 className="text-2xl font-black tracking-tight">{item.step}</h3>
-                            <p className="text-lg opacity-60 font-medium mt-1">{item.detail}</p>
+                            <h3 className="text-xl md:text-2xl font-black tracking-tight">{item.step}</h3>
+                            <p className="text-base md:text-lg opacity-60 font-medium mt-1">{item.detail}</p>
                           </div>
                           <ArrowRight className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0 text-indigo-500" />
                         </GlassCard>
@@ -594,32 +594,32 @@ export default function App() {
             )}
 
             {slide.type === 'closing' && (
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div className="space-y-4">
-                  <span className="text-indigo-500 font-black tracking-[0.3em] text-sm uppercase">{slide.subtitle}</span>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
+                  <span className="text-indigo-500 font-black tracking-[0.3em] text-xs md:text-sm uppercase">{slide.subtitle}</span>
+                  <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">{slide.title}</h2>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
                   {slide.content.map((item: any, i: number) => (
-                    <GlassCard key={i} className="border-indigo-500/10 p-10 group">
+                    <GlassCard key={i} className="border-indigo-500/10 p-6 md:p-10 group">
                       <div className="flex gap-8">
-                        <div className="w-16 h-16 rounded-3xl bg-indigo-600 text-white flex items-center justify-center font-black text-2xl shadow-xl shadow-indigo-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-3xl bg-indigo-600 text-white flex items-center justify-center font-black text-xl md:text-2xl shadow-xl shadow-indigo-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                           {i + 1}
                         </div>
-                        <div className="space-y-4 flex-1">
-                          <h3 className="text-2xl font-black tracking-tight text-text-primary">{item.label}</h3>
-                          <p className="text-xl text-text-secondary font-medium leading-relaxed">{item.text}</p>
+                        <div className="space-y-2 md:space-y-4 flex-1">
+                          <h3 className="text-xl md:text-2xl font-black tracking-tight text-text-primary">{item.label}</h3>
+                          <p className="text-lg md:text-xl text-text-secondary font-medium leading-relaxed">{item.text}</p>
                         </div>
                       </div>
                     </GlassCard>
                   ))}
                 </div>
-                <div className="mt-20 text-center">
+                <div className="mt-12 md:mt-20 text-center">
                   <motion.button
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setCurrentSlide(0)}
-                    className="px-12 py-6 rounded-3xl bg-indigo-600 text-white font-black text-xl shadow-2xl shadow-indigo-500/50 hover:bg-indigo-700 transition-all uppercase tracking-widest"
+                    className="px-8 py-4 md:px-12 md:py-6 rounded-3xl bg-indigo-600 text-white font-black text-lg md:text-xl shadow-2xl shadow-indigo-500/50 hover:bg-indigo-700 transition-all uppercase tracking-widest"
                   >
                     🚀 Restart Masterclass
                   </motion.button>
@@ -631,7 +631,7 @@ export default function App() {
       </main>
 
       {/* Navigation Controls */}
-      <nav className="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-6 py-3 rounded-3xl glass-morphism shadow-2xl">
+      <nav className="fixed bottom-4 md:bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-2 md:px-6 md:py-3 rounded-3xl glass-morphism shadow-2xl">
         <button 
           onClick={prevSlide}
           disabled={currentSlide === 0}

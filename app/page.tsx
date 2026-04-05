@@ -322,12 +322,9 @@ export default function App() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-12 py-10">
         <div className="flex items-center gap-4 group cursor-pointer">
-          <div className="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-2xl shadow-indigo-500/40 group-hover:rotate-12 transition-transform duration-500">
-            <Zap className="w-8 h-8" />
-          </div>
           <div className="flex flex-col">
-            <span className="font-black text-2xl tracking-tighter uppercase leading-none">AI Business</span>
-            <span className="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">Mastery 2024</span>
+            <span className="font-black text-2xl tracking-tighter uppercase leading-none">AI-DISCOVERY</span>
+            <span className="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">My personal ai discovery</span>
           </div>
         </div>
         

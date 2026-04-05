@@ -34,6 +34,27 @@ const slideVariants = {
   })
 };
 
+const TOOL_LINKS: Record<string, string> = {
+  "Claude": "https://claude.ai",
+  "ChatGPT": "https://chatgpt.com",
+  "Gemini": "https://gemini.google.com",
+  "Perplexity": "https://perplexity.ai",
+  "Make": "https://make.com",
+  "Zapier": "https://zapier.com",
+  "Notion": "https://notion.so",
+  "Canva": "https://canva.com",
+  "Midjourney": "https://midjourney.com",
+  "ElevenLabs": "https://elevenlabs.io",
+  "Otter.ai": "https://otter.ai",
+  "Firefly": "https://firefly.adobe.com",
+  "Relevance AI": "https://relevanceai.com",
+  "n8n": "https://n8n.io",
+  "NotebookLM": "https://notebooklm.google.com",
+  "Claude.ai": "https://claude.ai",
+  "Perplexity.ai": "https://perplexity.ai",
+  "Make.com": "https://make.com"
+};
+
 const AILogo = ({ name, className = "w-6 h-6" }: { name: string, className?: string, key?: React.Key }) => {
   const logoMap: Record<string, string> = {
     "Claude": "anthropic-icon",
@@ -85,7 +106,7 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     id: 1,
-    title: "Teaching AI to Business People",
+    title: "AI-DISCOVERY",
     subtitle: "SESSION 1 · BUSINESS AI FUNDAMENTALS",
     type: 'title',
     content: {
@@ -324,7 +345,7 @@ export default function App() {
         <div className="flex items-center gap-4 group cursor-pointer">
           <div className="flex flex-col">
             <span className="font-black text-2xl tracking-tighter uppercase leading-none">AI-DISCOVERY</span>
-            <span className="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">My personal ai discovery</span>
+            <span className="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">My Personal AI Discovery</span>
           </div>
         </div>
         
@@ -427,7 +448,13 @@ export default function App() {
                     <GlassCard key={i} className="group hover:bg-white/50 dark:hover:bg-white/5">
                       <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
                         <div className="w-20 h-20 rounded-3xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                          {item.icon || <CheckCircle className="w-10 h-10" />}
+                          {item.url ? (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="w-full h-full flex items-center justify-center">
+                              {item.icon || <CheckCircle className="w-10 h-10" />}
+                            </a>
+                          ) : (
+                            item.icon || <CheckCircle className="w-10 h-10" />
+                          )}
                         </div>
                         <div className="flex-1 space-y-4">
                           <h3 className="text-3xl font-black tracking-tight text-text-primary">{item.label}</h3>
@@ -465,7 +492,16 @@ export default function App() {
                         </div>
                         <div className="flex -space-x-4">
                           {item.tools.split(' · ').map((tool: string, idx: number) => (
-                            <AILogo key={idx} name={tool.trim()} className="w-12 h-12 border-4 border-white/40 dark:border-slate-900/40 shadow-2xl bg-white" />
+                            <motion.a 
+                              whileHover={{ scale: 1.1, zIndex: 10, y: -5 }}
+                              key={idx} 
+                              href={TOOL_LINKS[tool.trim()] || "#"} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="block"
+                            >
+                              <AILogo name={tool.trim()} className="w-12 h-12 border-4 border-white/40 dark:border-slate-900/40 shadow-2xl bg-white" />
+                            </motion.a>
                           ))}
                         </div>
                       </div>

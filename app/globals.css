@@ -2,25 +2,79 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #020617;
+  --text-primary: #020617;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --card: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(0, 0, 0, 0.05);
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --soft-shadow: 0 4px 6px -1px var(--primary-shadow);
+  --premium-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
+  --primary-shadow: rgba(79, 70, 229, 0.1);
+}
+
+/* Explicit .dark class support for manual toggle */
+html.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --card: rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --premium-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  --primary-shadow: rgba(79, 70, 229, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+  --shadow-soft: var(--soft-shadow);
+  --shadow-premium: var(--premium-shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-outfit), sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.1);
+  border-radius: 10px;
+}
+
+.glass-morphism {
+  @apply backdrop-blur-2xl border transition-all duration-300;
+  background: var(--card);
+  border-color: var(--card-border);
+  box-shadow: var(--premium-shadow);
+}
+
+.glass-morphism:hover {
+  @apply border-indigo-500/40;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
 }
